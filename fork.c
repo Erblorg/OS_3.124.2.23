@@ -6,11 +6,27 @@ int main() {
 	pid_t procid, parentid, result;
 	int a=0;
 	result = fork();
-	a=a+1;
-	procid = getpid();
-	parentid = getppid();
-	printf("Ид. текущего процесса: %d\n", procid);
-	printf("Ид. родительского процесса: %d\n", parentid);
-	printf("Значение переменной a: %d\n", a);
+	if(result<0) {
+		printf("Ошибка при выполнении fork()\n");
+		exit(-1);
+	}
+	else if(result==0) {
+		a=a+1000;
+		procid = getpid();
+        	parentid = getppid();
+        	printf("Ид. текущего процесса: %d\n", procid);
+        	printf("Ид. родительского процесса: %d\n", parentid);
+        	printf("Значение переменной a: %d\n", a);
+		printf("Значение переменной result: %d\n", result);
+	}
+	else {
+		a=a+1;
+		procid = getpid();
+		parentid = getppid();
+		printf("Ид. текущего процесса: %d\n", procid);
+		printf("Ид. родительского процесса: %d\n", parentid);
+		printf("Значение переменной a: %d\n", a);
+		printf("Значение переменной result: %d\n", result);
+	}
 	return 0;
 }
