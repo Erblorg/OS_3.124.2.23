@@ -43,31 +43,12 @@ int main() {
                         printf("Не удалось прочитать 17 байт из pipe\n");
                         exit(-1);
 		}
-                size = write(fd[1], string, 17);
-                if (size != 17) {
-                        printf("Не удалось записать 17 байт из строки\n");
-                        exit(-1);
-                }
-                printf("Родитель записал строку в pipe\n");
-	}
-	size = write(fd[1], string, 17);
-	if (size != 17) {
-		printf("Не удалось записать 17 байт из строки\n");
-		exit(-1);
-	}
-	size = read(fd[0], resstring, 17);
-	if (size != 17) {
-		printf("Не удалось прочитать 17 байт из pipe\n");
-		exit(-1);
-	}
-	printf("Прочитанная строка: %s\n", resstring);
-	if(close(fd[0])<0) {
-		printf("Не удалось закрыть pipe для чтения\n");
-		exit(-1);
-	}
-	if(close(fd[1])<0) {
-                printf("Не удалось закрыть pipe для записи\n");
-                exit(-1);
+                printf("Прочитанная строка: %s\n", resstring);
+        	if(close(fd[0])<0) {
+                	printf("Не удалось закрыть pipe для чтения\n");
+                	exit(-1);
+        	}
+
 	}
 	return 0;
 }
